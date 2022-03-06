@@ -6,3 +6,6 @@
 
 # Virtual Environment
 venv/
+
+# Development Files
+test.py
