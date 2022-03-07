@@ -5,9 +5,9 @@ GRAPHQL_URL = "https://www.facebook.com/api/graphql/"
 
 
 def getLocationIDs(location):
-    response = {"statusCode": "",
-                "statusMessage": "",
-                "data": []}
+    # Return values
+    statusMessage = ""
+    data = []
 
     requestHeaders = {"sec-fetch-site": "same-origin"}
     requestPayload = {
@@ -18,16 +18,17 @@ def getLocationIDs(location):
 
     facebookResponse = requestSession.post(
         GRAPHQL_URL, headers=requestHeaders, data=requestPayload)
-    response["statusCode"] = facebookResponse.status_code
 
     if (facebookResponse.status_code == 200):
-        response["statusMessage"] = "success"
+        statusMessage = "Success"
         facebookResponseJSON = json.loads(facebookResponse.text)
 
         # Get location names and location ids from the facebook response
         for location in facebookResponseJSON["data"]["city_street_search"]["street_results"]["edges"]:
             locationName = location["node"]["single_line_address"]
             locationID = location["node"]["page"]["id"]
-            response["data"].append({locationName: locationID})
+            data.append({locationName: locationID})
+    else:
+        statusMessage = "Failure: Facebook response status code %d" % facebookResponse.status_code
 
-    return response
+    return (statusMessage, data)
