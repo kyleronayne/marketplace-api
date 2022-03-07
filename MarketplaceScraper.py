@@ -11,7 +11,7 @@ def getLocationIDs(location):
 
     requestHeaders = {"sec-fetch-site": "same-origin"}
     requestPayload = {
-        "variables": """{"params": {"caller": "MARKETPLACE", "country_filter": "null", "page_category": ["CITY", "SUBCITY", "NEIGHBORHOOD","POSTAL_CODE"], "query": "%s", "search_type": "PLACE_TYPEAHEAD"}}""" % (location),
+        "variables": """{"params": {"caller": "MARKETPLACE", "page_category": ["CITY", "SUBCITY", "NEIGHBORHOOD","POSTAL_CODE"], "query": "%s"}}""" % (location),
         "doc_id": "5585904654783609"
     }
     requestSession = HTMLSession()
