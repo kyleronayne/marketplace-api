@@ -4,7 +4,7 @@ import json
 GRAPHQL_URL = "https://www.facebook.com/api/graphql/"
 
 
-def getLocationCoordinate(location):
+def getLocationCoordinates(location):
     # Return values
     statusMessage = ""
     data = []

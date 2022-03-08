@@ -4,15 +4,15 @@ import MarketplaceScraper
 API = Flask(__name__)
 
 
-@API.route("/location-coordinate", methods=["GET"])
-def locationCoordinate():
+@API.route("/location-coordinates", methods=["GET"])
+def locationCoordinates():
     response = {}
 
     # Required location parameter provided by the user
     location = request.args.get("location")
 
     if (location):
-        statusMessage, data = MarketplaceScraper.getLocationCoordinate(
+        statusMessage, data = MarketplaceScraper.getLocationCoordinates(
             location=location)
     else:
         statusMessage = "Failure: No location parameter provided"
