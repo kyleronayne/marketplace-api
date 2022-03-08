@@ -4,7 +4,7 @@ import json
 GRAPHQL_URL = "https://www.facebook.com/api/graphql/"
 
 
-def getLocationIDs(location):
+def getLocationCoordinate(location):
     # Return values
     statusMessage = ""
     data = []
@@ -23,12 +23,23 @@ def getLocationIDs(location):
         statusMessage = "Success"
         facebookResponseJSON = json.loads(facebookResponse.text)
 
-        # Get location names and location ids from the facebook response
+        # Get location names and their latitude and longitude from the facebook response
         for location in facebookResponseJSON["data"]["city_street_search"]["street_results"]["edges"]:
             locationName = location["node"]["single_line_address"]
-            locationID = location["node"]["page"]["id"]
-            data.append({locationName: locationID})
+            latitude = location["node"]["location"]["latitude"]
+            longitude = location["node"]["location"]["longitude"]
+            data.append({
+                locationName: {
+                    "latitude": latitude,
+                    "longitude": longitude
+                }
+            })
     else:
         statusMessage = "Failure: Facebook response status code %d" % facebookResponse.status_code
 
     return (statusMessage, data)
+
+
+def getListings(latitude, longitude):
+    statusMessage = ""
+    data = []
