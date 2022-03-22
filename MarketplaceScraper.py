@@ -37,8 +37,8 @@ def getLocations(locationSearchQuery):
             # Add the location to the list of locations
             data["locations"].append({
                 "name": locationName,
-                "latitude": locationLatitude,
-                "longitude": locationLongitude
+                "latitude": str(locationLatitude),
+                "longitude": str(locationLongitude)
             })
 
     return (status, error, data)
@@ -163,7 +163,7 @@ def parsePageResults(rawPageResults):
                     "name": listingName,
                     "currentPrice": listingCurrentPrice,
                     "previousPrice": listingPreviousPrice,
-                    "saleIsPending": listingSaleIsPending,
+                    "saleIsPending": str(listingSaleIsPending).lower(),
                     "primaryPhotoURL": listingPrimaryPhotoURL,
                     "sellerName": sellerName,
                     "sellerLocation": sellerLocation,
