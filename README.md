@@ -10,21 +10,22 @@ An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowin
     "error": {
         "source": String,
         "message": String
-    }
+    },
     "data": Array
 }
 ```
 ```status```: Indicates whether a request was a success or failure. Successful requests will have a status of "Success" and failed requests will have a status of "Failure".
-<br><br>
-```error```: A request error. Will be empty if no error exists.
+<br>
+
+```error```: A request error (will be empty if no error exists).
 - ```error.source```: Indicates the party responsible for an error. Server-side Facebook errors will have a source of "Facebook" and errors caused by the user will have a source of "User".
 - ```error.message```: A detailed description of the request error.
-<br><br>
+<br>
 
-```data```: A list of JSON objects representing the information an endpoint retrieved. Will be empty if an error exists.
+```data```: A list of JSON objects representing the information an endpoint retrieved (will be empty if an error exists).
 <br><br>
 ## Endpoints
-- ```/locationss```<br>
+- ```/locations```<br>
   *Response:*<br>
   Locations which are exact, or close matches, to the search query location provided. Latitude and longitude coordinates for a location are required to find Marketplace listings in a targeted area.<br><br>
   Example:
@@ -35,33 +36,34 @@ An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowin
       "data": {
           "locations": [
               {
-                  "name":"Houston, Texas",
-                  "latitude":29.7602,
-                  "longitude":-95.3694
+                  "name": "Houston, Texas",
+                  "latitude": 29.7602,
+                  "longitude": -95.3694
               },
               {
-                  "name":"Downtown Houston, TX",
-                  "latitude":29.758767,
-                  "longitude":-95.361523
+                  "name": "Downtown Houston, TX",
+                  "latitude": 29.758767,
+                  "longitude": -95.361523
               },
               {
-                  "name":"Houston, Mississippi",
-                  "latitude":33.8981,
-                  "longitude":-89.0017
+                  "name": "Houston, Mississippi",
+                  "latitude": 33.8981,
+                  "longitude": -89.0017
               },
               {
-                  "name":"Houston, Alaska",
-                  "latitude":61.6083,
-                  "longitude":-149.774
+                  "name": "Houston, Alaska",
+                  "latitude": 61.6083,
+                  "longitude": -149.774
               }
           ]
       }
   }
   ```
-  <br><br>
+  <br>
+
   *Required Parameters:*<br>
-  A location to find latitude and longitude points for.
+  A location in which to find the latitude and longitude coordinates.
   ```js
-  "location": String
+  "searchQuery": String
   ```
 ---
