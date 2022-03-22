@@ -1,39 +1,61 @@
 # Marketplace API
 
-An easy-to-use Facebook Marketplace API. Leverages the Facebook GraphQL API to allow for quick and easy retrieval of Facebook Marketplace listings and other relevant Marketplace data.
+An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowing for quick and easy retrieval of Facebook Marketplace listings and other relevant Marketplace data.
 <br><br>
 ## Responses
----
 **All** endpoints will return a JSON response in the following format:
 ```js
 {
-    "statusMessage": String,
+    "status": String,
+    "error": {
+        "source": String,
+        "message": String
+    }
     "data": Array
 }
 ```
-```statusMessage```: A description of the request status. Successful requests will receive a status message equal to "Success". Failed requests will receive a message containing "Failure", followed by an explanation.
+```status```: Indicates whether a request was a success or failure. Successful requests will have a status of "Success" and failed requests will have a status of "Failure".
 <br><br>
-```data```: A list of JSON objects representing the information an endpoint retrieves. An empty data value and a successful status message indicates that there was no available information to retrieve.
+```error```: A request error. Will be empty if no error exists.
+- ```error.source```: Indicates the party responsible for an error. Server-side Facebook errors will have a source of "Facebook" and errors caused by the user will have a source of "User".
+- ```error.message```: A detailed description of the request error.
+<br><br>
+
+```data```: A list of JSON objects representing the information an endpoint retrieved. Will be empty if an error exists.
 <br><br>
 ## Endpoints
----
-- ```/location-coordinates```<br>
+- ```/locationss```<br>
   *Response:*<br>
-  Locations and their latitude and longitude points for exact, or close matches, to the location provided. Location coordinates are needed to find Marketplace listings in specific areas.<br><br>
+  Locations which are exact, or close matches, to the search query location provided. Latitude and longitude coordinates for a location are required to find Marketplace listings in a targeted area.<br><br>
   Example:
   ```json
   {
-    "statusMessage": "Success", 
-    "data": [
-        {"Chicago, Illinois": 
-            {"latitude": 41.883222, "longitude": -87.632496}},
-        {"Chicago Lawn": 
-            {"latitude": 41.771827, "longitude": -87.695848}},
-        {"South Chicago": 
-            {"latitude": 41.740721, "longitude": -87.552392}},
-        {"West Chicago, Illinois":
-            {"latitude": 41.8884, "longitude": -88.2097}}
-    ]
+      "status": "Success",
+      "error": {},
+      "data": {
+          "locations": [
+              {
+                  "name":"Houston, Texas",
+                  "latitude":29.7602,
+                  "longitude":-95.3694
+              },
+              {
+                  "name":"Downtown Houston, TX",
+                  "latitude":29.758767,
+                  "longitude":-95.361523
+              },
+              {
+                  "name":"Houston, Mississippi",
+                  "latitude":33.8981,
+                  "longitude":-89.0017
+              },
+              {
+                  "name":"Houston, Alaska",
+                  "latitude":61.6083,
+                  "longitude":-149.774
+              }
+          ]
+      }
   }
   ```
   <br><br>
@@ -42,3 +64,4 @@ An easy-to-use Facebook Marketplace API. Leverages the Facebook GraphQL API to a
   ```js
   "location": String
   ```
+---

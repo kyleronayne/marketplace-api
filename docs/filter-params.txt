@@ -1,0 +1,16 @@
+Price minimum -> filter_price_lower_bound (int; default = 0)
+Price maximum -> filter_price_upper_bound (int; default = 214748364700)
+
+Delivery method: All ->
+Delivery method: Local pickup -> commerce_enable_local_pickup (boolean: true)
+Delivery method: Shipping -> commerce_enable_shipping (boolean: true)
+
+Item condition: All -> 
+Item condition: New -> commerce_search_and_rp_condition (null or "new")
+Item condition: Used - > commerce_search_and_rp_condition (null or "used;open_box_new;refurbished;used_good;used_like_new;used_fair")
+
+Date listed: All ->
+Date listed: Last 24 hours -> commerce_search_and_rp_ctime_days (string: "19062;19061")
+
+Availability: Available -> commerce_search_and_rp_available (boolean: true)
+Availability: Sold -> commerce_search_and_rp_available (boolean: false)

@@ -4,26 +4,49 @@ import MarketplaceScraper
 API = Flask(__name__)
 
 
-@API.route("/location-coordinates", methods=["GET"])
-def locationCoordinates():
+@API.route("/locations", methods=["GET"])
+def locations():
     response = {}
 
-    # Required location parameter provided by the user
-    location = request.args.get("location")
+    # Required parameters provided by the user
+    locationSearchQuery = request.args.get("searchQuery")
 
-    if (location):
-        statusMessage, data = MarketplaceScraper.getLocationCoordinates(
-            location=location)
+    if (locationSearchQuery):
+        status, error, data = MarketplaceScraper.getLocations(
+            locationSearchQuery=locationSearchQuery)
     else:
-        statusMessage = "Failure: No location parameter provided"
-        data = []
+        status = "Failure"
+        error["source"] = "User"
+        error["message"] = "Missing required parameter"
+        data = {}
 
-    response = {
-        "statusMessage": statusMessage,
-        "data": data
-    }
+    response["status"] = status
+    response["error"] = error
+    response["data"] = data
 
-    response["statusMessage"] = statusMessage
+    return response
+
+
+@API.route("/listings", methods=["GET"])
+def listings():
+    response = {}
+
+    # Required parameters provided by user
+    locationLatitude = request.args.get("locationLatitude")
+    locationLongitude = request.args.get("locationLongitude")
+    itemSearchQuery = request.args.get("searchQuery")
+
+    if (locationLatitude and locationLongitude and itemSearchQuery):
+        status, error, data = MarketplaceScraper.getListings(
+            locationLatitude=locationLatitude, locationLongitude=locationLongitude, itemSearchQuery=itemSearchQuery)
+    else:
+        status = "Failure"
+        error["source"] = "User"
+        error["message"] = "Missing required paramter(s)"
+        data = {}
+
+    response["status"] = status
+    response["error"] = error
     response["data"] = data
 
     return response
