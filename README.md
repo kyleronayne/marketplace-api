@@ -66,9 +66,11 @@ An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowin
 
   *Required Parameters:*
   <br>
-  A location in which to find the latitude and longitude coordinates.
   ```js
-  {"locationQuery": String}
+  {
+      // A location in which to find the latitude and longitude coordinates
+      "locationQuery": String
+  }
   ```
 ---
 - ```/search```
@@ -157,3 +159,18 @@ An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowin
           ]
       }
   }
+  ```
+  <br>
+
+  *Required Parameters:*
+  <br>
+  ```js
+  {
+      // The latitude coordinate of the search location
+      "locationLatitude": String,
+      // The longitude coordinate of the search location
+      "locationLongitude": String,
+      // Keywords for which listings to retrieve
+      "listingQuery": String
+  } 
+  ```
