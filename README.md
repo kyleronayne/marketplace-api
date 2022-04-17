@@ -1,6 +1,6 @@
 # Marketplace API
 
-An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowing for quick and easy retrieval of Facebook Marketplace listings and other relevant Marketplace data.
+An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowing for quick and easy retrieval of Facebook Marketplace listings and other relevant Marketplace data, without needing to log into a Facebook account.
 <br><br>
 ## Responses
 **All** endpoints will return a JSON response in the following format:

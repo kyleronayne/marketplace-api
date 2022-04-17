@@ -20,7 +20,6 @@ pyee==8.2.2
 pyppeteer==1.0.2
 pyquery==1.4.3
 requests==2.27.1
-requests-html==0.10.0
 six==1.16.0
 soupsieve==2.3.1
 toml==0.10.2
