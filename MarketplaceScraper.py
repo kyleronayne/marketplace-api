@@ -9,11 +9,11 @@ GRAPHQL_HEADERS = {
 }
 
 
-def getLocations(locationSearchQuery):
+def getLocations(locationQuery):
     data = {}
 
     requestPayload = {
-        "variables": """{"params": {"caller": "MARKETPLACE", "page_category": ["CITY", "SUBCITY", "NEIGHBORHOOD","POSTAL_CODE"], "query": "%s"}}""" % (locationSearchQuery),
+        "variables": """{"params": {"caller": "MARKETPLACE", "page_category": ["CITY", "SUBCITY", "NEIGHBORHOOD","POSTAL_CODE"], "query": "%s"}}""" % (locationQuery),
         "doc_id": "5585904654783609"
     }
 
@@ -44,13 +44,13 @@ def getLocations(locationSearchQuery):
     return (status, error, data)
 
 
-def getListings(locationLatitude, locationLongitude, itemSearchQuery, numPageResults=1):
+def getListings(locationLatitude, locationLongitude, listingQuery, numPageResults=1):
     data = {}
 
     rawPageResults = []  # Un-parsed list of JSON results from each page
 
     requestPayload = {
-        "variables": """{"count":24, "params":{"bqf":{"callsite":"COMMERCE_MKTPLACE_WWW","query":"%s"},"browse_request_params":{"commerce_enable_local_pickup":true,"commerce_enable_shipping":true,"commerce_search_and_rp_available":true,"commerce_search_and_rp_condition":null,"commerce_search_and_rp_ctime_days":null,"filter_location_latitude":%s,"filter_location_longitude":%s,"filter_price_lower_bound":0,"filter_price_upper_bound":214748364700,"filter_radius_km":16},"custom_request_params":{"surface":"SEARCH"}}}""" % (itemSearchQuery, locationLatitude, locationLongitude),
+        "variables": """{"count":24, "params":{"bqf":{"callsite":"COMMERCE_MKTPLACE_WWW","query":"%s"},"browse_request_params":{"commerce_enable_local_pickup":true,"commerce_enable_shipping":true,"commerce_search_and_rp_available":true,"commerce_search_and_rp_condition":null,"commerce_search_and_rp_ctime_days":null,"filter_location_latitude":%s,"filter_location_longitude":%s,"filter_price_lower_bound":0,"filter_price_upper_bound":214748364700,"filter_radius_km":16},"custom_request_params":{"surface":"SEARCH"}}}""" % (listingQuery, locationLatitude, locationLongitude),
         "doc_id": "7111939778879383"
     }
 

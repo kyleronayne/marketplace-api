@@ -21,7 +21,7 @@ An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowin
 - ```error.source```: Indicates the party responsible for an error. Server-side Facebook errors will have a source of "Facebook" and errors caused by the user will have a source of "User".
 - ```error.message```: A detailed description of the request error.
 <br>
-
+  
 ```data```: A list of JSON objects representing the information an endpoint retrieved (will be empty if an error exists).
 <br><br>
 ## Endpoints
@@ -40,23 +40,23 @@ An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowin
           "locations": [
               {
                   "name": "Houston, Texas",
-                  "latitude": 29.7602,
-                  "longitude": -95.3694
+                  "latitude": "29.7602",
+                  "longitude": "-95.3694"
               },
               {
                   "name": "Downtown Houston, TX",
-                  "latitude": 29.758767,
-                  "longitude": -95.361523
+                  "latitude": "29.758767",
+                  "longitude": "-95.361523"
               },
               {
                   "name": "Houston, Mississippi",
-                  "latitude": 33.8981,
-                  "longitude": -89.0017
+                  "latitude": "33.8981",
+                  "longitude": "-89.0017"
               },
               {
                   "name": "Houston, Alaska",
-                  "latitude": 61.6083,
-                  "longitude": -149.774
+                  "latitude": "61.6083",
+                  "longitude": "-149.774"
               }
           ]
       }
@@ -68,16 +68,16 @@ An easy-to-use Facebook Marketplace API. Wraps the Facebook GraphQL API, allowin
   <br>
   A location in which to find the latitude and longitude coordinates.
   ```js
-  "searchQuery": String
+  {"locationQuery": String}
   ```
 ---
-- ```/listings```
+- ```/search```
   <br>
   *Response:*
   <br>
-  Listings which are exact, or close matches, to the search query and filter(s) provided.
+  Listings which are exact, or close matches, to the listing query and optional filter(s) provided.
   <br><br>
-  Example (number of pages/listings displayed and listing's pirmary photo URL have been removed to shorten example):
+  Example (number of pages/listings displayed and listing's primary photo URL have been removed to shorten this example):
   ```json
   {
       "status": "Success",

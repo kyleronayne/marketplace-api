@@ -9,11 +9,11 @@ def locations():
     response = {}
 
     # Required parameters provided by the user
-    locationSearchQuery = request.args.get("searchQuery")
+    locationQuery = request.args.get("locationQuery")
 
-    if (locationSearchQuery):
+    if (locationQuery):
         status, error, data = MarketplaceScraper.getLocations(
-            locationSearchQuery=locationSearchQuery)
+            locationQuery=locationQuery)
     else:
         status = "Failure"
         error["source"] = "User"
@@ -27,22 +27,22 @@ def locations():
     return response
 
 
-@API.route("/listings", methods=["GET"])
-def listings():
+@API.route("/search", methods=["GET"])
+def search():
     response = {}
 
     # Required parameters provided by user
     locationLatitude = request.args.get("locationLatitude")
     locationLongitude = request.args.get("locationLongitude")
-    itemSearchQuery = request.args.get("searchQuery")
+    listingQuery = request.args.get("listingQuery")
 
-    if (locationLatitude and locationLongitude and itemSearchQuery):
+    if (locationLatitude and locationLongitude and listingQuery):
         status, error, data = MarketplaceScraper.getListings(
-            locationLatitude=locationLatitude, locationLongitude=locationLongitude, itemSearchQuery=itemSearchQuery)
+            locationLatitude=locationLatitude, locationLongitude=locationLongitude, listingQuery=listingQuery)
     else:
         status = "Failure"
         error["source"] = "User"
-        error["message"] = "Missing required paramter(s)"
+        error["message"] = "Missing required parameter(s)"
         data = {}
 
     response["status"] = status
